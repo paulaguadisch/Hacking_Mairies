@@ -28,6 +28,3 @@ Résumé ou nos accomplissements :
 Grâce à ce programme nous avons envoyé un email personnalisé à ... mairies dans 3 départements différents.
 L'objectif était de présenter brièvement le programme et la pédagogie de THP (principalement du peer learning) pour que celles-ci puissent contacter Charles si elles sont intéressées. Le faire à travers un programme designé par ses élèves au bout de 2 semaines montre la pertinence de THP.
 Pour être sur que celles-ci lisent ces emails, nous avons également développé un bot twitter pour les relancer et les pousser à s'intéresser à THP.
-
-Pour toute question, n'hésitez-pas à contacter : 
-Olivier Dumas : +33 7 60 98 26 89
