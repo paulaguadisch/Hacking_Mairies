@@ -15,15 +15,18 @@ array_nom_des_mairies = [] #création d'un second tableau pour y stocker les nom
 voyelles = ["a","e","i","o","u","y","A","E","I","O","U","Y"] #Je définis un tableau de voyelles pour pouvoir personnaliser le mail avec d' ou de selon si la mairie commence par une consonne ou une voyelle
 determinant = "" #je crée une variable vide à laquelle je vais donner une valeur dans mon "if" plus bas selon si la ville commence par une voyelle ou une consonne
 
-CSV.foreach("annuaire.csv") { |row| array_emails << row[1] } #je place le contenu de la colonne 1 (2e colonne) du csv dans ce tableau
-CSV.foreach("annuaire.csv") { |row| array_nom_des_mairies << row[0] } #je place le contenu de la colonne 0 (1ère colonne) du csv dans ce tableau
+CSV.foreach("../database/annuaire.csv") { |row| array_emails << row[2] } #je place le contenu de la colonne 2 (3e colonne) du csv dans ce tableau
+CSV.foreach("../database/annuaire.csv") { |row| array_nom_des_mairies << row[1] } #je place le contenu de la colonne 1 (2ème colonne) du csv dans ce tableau
 
 
 	Gmail.connect(ENV['EMAIL'], ENV['MDP']) do |gmail| #je me connecte à mon compte gmail
 
 	y = 0
-	array_emails.each do |i| #pour chaque éléments de mon tableau des emails
-			email = gmail.compose do 
+
+	array_emails.delete_if {|x| x=~/^\d*$/} #Supprimer les emails qui n'existent pas avec un regex des familles
+
+		array_emails.each do |i| #pour chaque éléments de mon tableau des emails
+			email = gmail.compose do
 			  to i #je sélectionne un élément de mon tableau d'emails
 			  subject "Présentation de The Hacking Project" 
 			  content_type 'text/html; charset=UTF-8' #je précise que le content est du html et peut inclure les caractères spéciaux avec le charset UTF-8
@@ -48,6 +51,8 @@ CSV.foreach("annuaire.csv") { |row| array_nom_des_mairies << row[0] } #je place 
 			email.deliver! #j'envoie l'email
 		end
 	end
+
+puts array_emails
 end
 
 send_email_to_line 
