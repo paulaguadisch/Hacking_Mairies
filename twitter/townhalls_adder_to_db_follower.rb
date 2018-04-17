@@ -6,12 +6,14 @@ require 'nokogiri'
 require 'watir'
 require 'json'
 require 'csv'
+require 'dotenv' #je require dotenv pour pouvoir sécuriser le mdp
+Dotenv.load
 
 client = Twitter::REST::Client.new do |config|
-  config.consumer_key        = "alb9YVj1ZFtKzOLnYRmUxcHq4"
-  config.consumer_secret     = "W0vuJIMYG8nXADxav6nOK3DNoeRd9kkuQPXGjFtXhHnd7Bj7Rd"
-  config.access_token        = "984026754368114688-cGqPuVZox8QiwHAt4CPidtBrTTucaEg"
-  config.access_token_secret = "80hr73RkRPDI9dOTAY8yXUc6uSFbwg8YZc2hNMDuWsFZd"
+  ENV['CONSUMER_KEY']
+  ENV['CONSUMER_SECRET']
+  ENV['TOKEN']
+  ENV['TOKEN_SECRET']
 end
 
 
